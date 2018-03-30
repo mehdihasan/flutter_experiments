@@ -85,7 +85,8 @@ class LoginState extends State<LoginScreen>
                           child: new Icon(FontAwesomeIcons.signInAlt),
                           // child: new Text("Login"),
                           onPressed: () {
-                            Navigator.of(context).push(new MaterialPageRoute(
+                            Navigator.of(context).pushReplacement(
+                                new MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     new HomePage()));
                           },
