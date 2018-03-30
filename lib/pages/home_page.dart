@@ -3,6 +3,7 @@ import './other_page.dart';
 import './chat_page.dart';
 import 'tab/TabLayout.dart';
 import 'search_page.dart';
+import 'package:my_flutter_chat/ui/home/home_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -100,6 +101,15 @@ class HomePageState extends State<HomePage> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
                     builder: (BuildContext context) => new Search()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Planet"),
+              trailing: new Icon(Icons.satellite),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new Solar()));
               },
             ),
             new Divider(),

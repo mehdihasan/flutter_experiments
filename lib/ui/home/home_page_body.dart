@@ -5,7 +5,7 @@ import 'package:my_flutter_chat/ui/common/plannet_summary.dart';
 class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Expanded(
+    return new Material(
       child: new Container(
         color: new Color(0xFF736AB7),
         child: new CustomScrollView(
