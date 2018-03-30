@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './other_page.dart';
 import './chat_page.dart';
 import 'tab/TabLayout.dart';
+import 'search_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -90,6 +91,15 @@ class HomePageState extends State<HomePage> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
                     builder: (BuildContext context) => new TabLayout()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Search"),
+              trailing: new Icon(Icons.search),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new Search()));
               },
             ),
             new Divider(),
