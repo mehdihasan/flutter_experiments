@@ -4,13 +4,7 @@ import 'search_material.dart';
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Material Search Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new MyHomePage(title: 'Material Search Demo'),
-    );
+    return new MyHomePage(title: 'Material Search Demo');
   }
 }
 
