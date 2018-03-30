@@ -266,9 +266,9 @@ class MaterialSearchInput<T> extends FormField<T> {
       new _MaterialSearchInputState<T>();
 }
 
+// ignore: conflicting_generic_interfaces
 class _MaterialSearchInputState<T> extends State<MaterialSearchInput<T>>
     with FormFieldState<T> {
-  // ignore: conflicting_generic_interfaces
   _buildMaterialSearchPage(BuildContext context) {
     return new _MaterialSearchPageRoute<T>(
         settings: new RouteSettings(
