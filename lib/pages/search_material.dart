@@ -13,11 +13,15 @@ class MaterialSearchResult<T> extends StatelessWidget {
     Key key,
     this.value,
     this.text,
+    this.textTwo,
+    this.textThree,
     this.icon,
   }) : super(key: key);
 
   final T value;
   final String text;
+  final String textTwo;
+  final String textThree;
   final IconData icon;
 
   @override
@@ -27,8 +31,21 @@ class MaterialSearchResult<T> extends StatelessWidget {
         children: <Widget>[
           new Container(width: 70.0, child: new Icon(icon)),
           new Expanded(
-              child:
-                  new Text(text, style: Theme.of(context).textTheme.subhead)),
+              child: new Column(
+                children: <Widget>[
+                  new Text(text + ", " + textTwo, style: Theme
+                      .of(context)
+                      .textTheme
+                      .subhead),
+                  new Text(textThree, style: Theme
+                      .of(context)
+                      .textTheme
+                      .body1)
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+              )
+          ),
         ],
       ),
       height: 56.0,

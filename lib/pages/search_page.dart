@@ -47,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon: Icons.person,
                         value: v,
                         text: "Mr(s). $v",
+                textTwo: "Eng",
+                textThree: "Cefalo",
                       ))
                   .toList(),
               filter: (String value, String criteria) {
@@ -97,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           icon: Icons.person,
                           value: v,
                           text: "Mr(s). $v",
+                  textTwo: "Eng",
+                  textThree: "Cefalo",
                         ))
                     .toList(),
                 filter: (String value, String criteria) {

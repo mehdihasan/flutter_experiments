@@ -4,6 +4,7 @@ import './chat_page.dart';
 import 'tab/TabLayout.dart';
 import 'search_page.dart';
 import 'package:my_flutter_chat/ui/home/home_page.dart';
+import 'package:my_flutter_chat/friends/friends_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -110,6 +111,15 @@ class HomePageState extends State<HomePage> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
                     builder: (BuildContext context) => new Solar()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Friends"),
+              trailing: new Icon(Icons.people),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new FriendsPage()));
               },
             ),
             new Divider(),
