@@ -9,13 +9,7 @@ For help getting started with Flutter, view our online
 
 ## Screens
 
-![login](https://c1.staticflickr.com/1/789/26301716437_65b347d9f6_n.jpg)
-
-
-![home](https://c1.staticflickr.com/1/882/41174627211_b6f8f0f301_n.jpg)
-
-
-![home](https://c1.staticflickr.com/1/810/41129896182_598c1916bd_n.jpg)
+![login](https://c1.staticflickr.com/1/789/26301716437_65b347d9f6_n.jpg)     ![home](https://c1.staticflickr.com/1/882/41174627211_b6f8f0f301_n.jpg)    ![home](https://c1.staticflickr.com/1/810/41129896182_598c1916bd_n.jpg)
 
 
 ![tab layout](https://c1.staticflickr.com/1/796/39364021730_fef9260597_n.jpg)
