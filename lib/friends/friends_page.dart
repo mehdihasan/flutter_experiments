@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_flutter_chat/frienddetails/friend_details_page.dart';
 import 'package:my_flutter_chat/friends/friend.dart';
+import 'package:my_flutter_chat/friends/contacts_demo.dart';
 
 class FriendsPage extends StatefulWidget {
   @override
@@ -46,10 +47,15 @@ class _FriendsPageState extends State<FriendsPage> {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (c) {
+          //return new ContactsDemo();
           return new FriendDetailsPage(friend, avatarTag: avatarTag);
         },
       ),
     );
+  }
+
+  _showMaterialSearch(BuildContext context) {
+
   }
 
   @override
@@ -68,7 +74,18 @@ class _FriendsPageState extends State<FriendsPage> {
     }
 
     return new Scaffold(
-      appBar: new AppBar(title: new Text('Friends')),
+      appBar: new AppBar(
+        title: new Text('Friends'),
+        actions: <Widget>[
+          new IconButton(
+            onPressed: () {
+              _showMaterialSearch(context);
+            },
+            tooltip: 'Search',
+            icon: new Icon(Icons.search),
+          )
+        ],
+      ),
       body: content,
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:my_flutter_chat/friends/contacts_demo.dart';
 
 typedef String FormFieldFormatter<T>(T v);
 typedef bool MaterialSearchFilter<T>(T v, String c);
@@ -220,7 +221,15 @@ class _MaterialSearchState<T> extends State<MaterialSearch> {
               child: new Column(
                 children: results.map((MaterialSearchResult result) {
                   return new InkWell(
-                    onTap: () => widget.onSelect(result.value),
+                    onTap: () =>
+                        Navigator.of(context).push(
+                          new MaterialPageRoute(
+                            builder: (c) {
+                              return new ContactsDemo();
+                            },
+                          ),
+                        ),
+                    // onTap: () => widget.onSelect(result.value),
                     child: result,
                   );
                 }).toList(),
