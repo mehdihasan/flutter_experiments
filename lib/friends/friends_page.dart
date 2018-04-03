@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_flutter_chat/frienddetails/friend_details_page.dart';
 import 'package:my_flutter_chat/friends/friend.dart';
-import 'package:my_flutter_chat/friends/contacts_demo.dart';
 
 class FriendsPage extends StatefulWidget {
   @override
@@ -47,7 +46,6 @@ class _FriendsPageState extends State<FriendsPage> {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (c) {
-          //return new ContactsDemo();
           return new FriendDetailsPage(friend, avatarTag: avatarTag);
         },
       ),

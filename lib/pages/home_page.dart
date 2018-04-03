@@ -5,6 +5,7 @@ import 'tab/TabLayout.dart';
 import 'search_page.dart';
 import 'package:my_flutter_chat/ui/home/home_page.dart';
 import 'package:my_flutter_chat/friends/friends_page.dart';
+import 'package:my_flutter_chat/contacts/contact_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -120,6 +121,15 @@ class HomePageState extends State<HomePage> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
                     builder: (BuildContext context) => new FriendsPage()));
+              },
+            ),
+            new ListTile(
+              title: new Text("Contacts"),
+              trailing: new Icon(Icons.contacts),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new ContactsPage()));
               },
             ),
             new Divider(),

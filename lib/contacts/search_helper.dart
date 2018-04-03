@@ -1,57 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:my_flutter_chat/contacts/contacts.dart';
 
 typedef String FormFieldFormatter<T>(T v);
 typedef bool MaterialSearchFilter<T>(T v, String c);
 typedef int MaterialSearchSort<T>(T a, T b, String c);
 typedef Future<List<MaterialSearchResult>> MaterialResultsFinder(String c);
-
-class MaterialSearchResult<T> extends StatelessWidget {
-  const MaterialSearchResult({
-    Key key,
-    this.value,
-    this.text,
-    this.textTwo,
-    this.textThree,
-    this.icon,
-  }) : super(key: key);
-
-  final T value;
-  final String text;
-  final String textTwo;
-  final String textThree;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      child: new Row(
-        children: <Widget>[
-          new Container(width: 70.0, child: new Icon(icon)),
-          new Expanded(
-              child: new Column(
-                children: <Widget>[
-                  new Text(text + ", " + textTwo, style: Theme
-                      .of(context)
-                      .textTheme
-                      .subhead),
-                  new Text(textThree, style: Theme
-                      .of(context)
-                      .textTheme
-                      .body1)
-                ],
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-              )
-          ),
-        ],
-      ),
-      height: 56.0,
-    );
-  }
-}
 
 class MaterialSearch<T> extends StatefulWidget {
   MaterialSearch({
@@ -61,7 +15,7 @@ class MaterialSearch<T> extends StatefulWidget {
     this.getResults,
     this.filter,
     this.sort,
-    this.limit: 10,
+    this.limit: 3000,
     this.onSelect,
   })  : assert(() {
           if (results == null && getResults == null ||
@@ -94,7 +48,7 @@ class _MaterialSearchState<T> extends State<MaterialSearch> {
   String _criteria = '';
   TextEditingController _controller = new TextEditingController();
 
-  _filter(T v, String c) {
+  _filter(String v, String c) {
     return v
         .toString()
         .toLowerCase()
@@ -172,7 +126,7 @@ class _MaterialSearchState<T> extends State<MaterialSearch> {
       //only apply default filter if used the `results` option
       //because getResults may already have applied some filter if `filter` option was omited.
       else if (widget.results != null) {
-        return _filter(result.value, _criteria);
+        return _filter(result.value.name, _criteria);
       }
 
       return true;
@@ -230,117 +184,38 @@ class _MaterialSearchState<T> extends State<MaterialSearch> {
   }
 }
 
-class _MaterialSearchPageRoute<T> extends MaterialPageRoute<T> {
-  _MaterialSearchPageRoute({
-    @required WidgetBuilder builder,
-    RouteSettings settings: const RouteSettings(),
-    maintainState: true,
-    bool fullscreenDialog: false,
-  })  : assert(builder != null),
-        super(
-            builder: builder,
-            settings: settings,
-            maintainState: maintainState,
-            fullscreenDialog: fullscreenDialog);
-}
-
-class MaterialSearchInput<T> extends FormField<T> {
-  MaterialSearchInput({
+class MaterialSearchResult<T> extends StatelessWidget {
+  const MaterialSearchResult({
     Key key,
-    FormFieldSetter<T> onSaved,
-    FormFieldValidator<T> validator,
-    bool autovalidate: true,
-    this.placeholder,
-    this.formatter,
-    this.results,
-    this.getResults,
-    this.filter,
-    this.sort,
-    this.onSelect,
-  }) : super(
-          key: key,
-          onSaved: onSaved,
-          validator: validator,
-          autovalidate: autovalidate,
-          builder: (FormFieldState<T> field) {
-            final _MaterialSearchInputState<T> state = field;
+    this.value,
+  }) : super(key: key);
 
-            return state._build(state.context);
-          },
-        );
-
-  final String placeholder;
-  final FormFieldFormatter<T> formatter;
-
-  final List<MaterialSearchResult<T>> results;
-  final MaterialResultsFinder getResults;
-  final MaterialSearchFilter<T> filter;
-  final MaterialSearchSort<T> sort;
-  final ValueChanged<T> onSelect;
+  final Contacts value;
 
   @override
-  _MaterialSearchInputState<T> createState() =>
-      new _MaterialSearchInputState<T>();
-}
-
-// ignore: conflicting_generic_interfaces
-class _MaterialSearchInputState<T> extends State<MaterialSearchInput<T>>
-    with FormFieldState<T> {
-  _buildMaterialSearchPage(BuildContext context) {
-    return new _MaterialSearchPageRoute<T>(
-        settings: new RouteSettings(
-          name: 'material_search',
-          isInitialRoute: false,
-        ),
-        builder: (BuildContext context) {
-          return new Material(
-            child: new MaterialSearch<T>(
-              placeholder: widget.placeholder,
-              results: widget.results,
-              getResults: widget.getResults,
-              filter: widget.filter,
-              sort: widget.sort,
-              onSelect: (T value) => Navigator.of(context).pop(value),
-            ),
-          );
-        });
-  }
-
-  _showMaterialSearch(BuildContext context) {
-    Navigator
-        .of(context)
-        .push(_buildMaterialSearchPage(context))
-        .then((Object value) {
-      onChanged(value);
-      widget.onSelect(value);
-    });
-  }
-
-  bool get _isEmpty {
-    return value == null;
-  }
-
-  Widget _build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.subhead;
-
-    return new InkWell(
-      onTap: () => _showMaterialSearch(context),
-      child: new InputDecorator(
-        isEmpty: _isEmpty,
-        decoration: new InputDecoration(
-          labelStyle: _isEmpty ? null : valueStyle,
-          labelText: widget.placeholder,
-          errorText: errorText,
-        ),
-        baseStyle: valueStyle,
-        child: _isEmpty
-            ? null
-            : new Text(
-                widget.formatter != null
-                    ? widget.formatter(value)
-                    : value.toString(),
-                style: valueStyle),
+  Widget build(BuildContext context) {
+    return new Container(
+      child: new Row(
+        children: <Widget>[
+          new Container(
+              width: 70.0,
+              padding: new EdgeInsets.all(15.0),
+              child: new CircleAvatar(
+                backgroundImage: new NetworkImage(value.avatar),
+              )),
+          new Expanded(
+              child: new Column(
+            children: <Widget>[
+              new Text(value.name + ", " + value.location,
+                  style: Theme.of(context).textTheme.subhead),
+              new Text(value.email, style: Theme.of(context).textTheme.body1)
+            ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+          )),
+        ],
       ),
+      height: 70.0,
     );
   }
 }
