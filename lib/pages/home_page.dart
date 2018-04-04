@@ -110,8 +110,10 @@ class HomePageState extends State<HomePage> {
               trailing: new Icon(Icons.satellite),
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(new MaterialPageRoute(
+                Navigator.push(context, new MaterialPageRoute(
                     builder: (BuildContext context) => new Solar()));
+                /*Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new Solar()));*/
               },
             ),
             new ListTile(
@@ -119,7 +121,7 @@ class HomePageState extends State<HomePage> {
               trailing: new Icon(Icons.people),
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(new MaterialPageRoute(
+                Navigator.push(context, new MaterialPageRoute(
                     builder: (BuildContext context) => new FriendsPage()));
               },
             ),
@@ -128,7 +130,7 @@ class HomePageState extends State<HomePage> {
               trailing: new Icon(Icons.contacts),
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(new MaterialPageRoute(
+                Navigator.push(context, new MaterialPageRoute(
                     builder: (BuildContext context) => new ContactsPage()));
               },
             ),

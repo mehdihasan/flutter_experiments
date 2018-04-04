@@ -44,7 +44,8 @@ class _FContactsPageState extends State<ContactsPage> {
   }
 
   _navigateToContactDetails(Contacts friend, Object avatarTag) {
-    Navigator.of(context).push(
+    Navigator.push(
+      context,
       new MaterialPageRoute(
         builder: (c) {
           return new ContactsDemo();
@@ -80,8 +81,7 @@ class _FContactsPageState extends State<ContactsPage> {
 
   _showMaterialSearch(BuildContext context) {
     Navigator
-        .of(context)
-        .push(_buildMaterialSearchPage(context))
+        .push(context, _buildMaterialSearchPage(context))
         .then((Object value) {
       setState(() => _contacts = value);
     });
